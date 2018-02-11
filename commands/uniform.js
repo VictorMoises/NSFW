@@ -6,20 +6,17 @@ exports.run = (client, message, args) => {
     if (!message.channel.nsfw) return message.channel.send(":underage: NSFW Command. Please switch to NSFW channel in order to use this command.")
 
     var subreddits = [
-        'NSFW_Wallpapers',
-        'SexyWallpapers',
-        'HighResNSFW',
-        'nsfw_hd',
-        'UHDnsfw'
+        'MilitaryGoneWild',
+        'sexyuniforms'
     ]
     var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
 
     randomPuppy(sub)
         .then(url => {
             request.get(url).then(r => {
-                fs.writeFile(`4k.jpg`, r.body)
+                fs.writeFile(`uniform.jpg`, r.body)
                 message.channel.sendFile(r.body)
-                fs.unlink(`./4k.jpg`)
+                fs.unlink(`./uniform.jpg`)
             })
         })
 }
